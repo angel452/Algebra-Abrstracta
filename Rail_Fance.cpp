@@ -1,3 +1,8 @@
+/*
+Correccion...
+La tercera funcion (string completar) se encuentra dentro del main. Linea 104 - 111
+*/
+
 #include <iostream>
 #include <string>
 using  namespace  std;
