@@ -1,8 +1,3 @@
-/*
-Correccion...
-La tercera funcion (string completar) se encuentra dentro del main. Linea 104 - 111
-*/
-
 #include <iostream>
 #include <string>
 using  namespace  std;
@@ -68,9 +63,49 @@ class Programa
 
         void descodificar()
         {
+            int nElementos;
+            char vacio[100];
+            int rondas;
+            int nronda = 0;
+            int contador = 0;
+            
+            nElementos = (clave_fila*2)-2; //6
+            rondas = mensaje.length() / nElementos; // 3
 
+            for (int a = 0; a < mensaje.length(); a = a + ((clave_fila*2) - 2)) // < 24
+            {
+                //cout << a << endl;
+                vacio[a] = mensaje[contador];
+                contador = contador + 1;
+            }
+
+            for(int i = 1; i < clave_fila - 1; i++) // < 4
+            {
+                for (int  j = 0; j < rondas; j++) // < 3
+                {
+                    int ini, fin;
+                    
+                    ini = ((nElementos*(j+1)) - (nElementos - 1)) + (i-1); // 8 - 7 + 0 = 1
+                    fin = ((nElementos * (j+1)) - 1) - (i-1); // 8 - 1 - 0 = 7
+
+                    //cout << "[" << ini << "][" << fin << "]" << endl;
+
+                    vacio[ini] = mensaje[contador];
+                    contador = contador + 1;
+                    vacio[fin] = mensaje[contador];
+                    contador = contador + 1;
+                }
+            }
+
+            for(int b = clave_fila - 1; b < mensaje.length(); b = b + ((clave_fila*2) - 2) )
+            {
+                //cout << b << endl;
+                vacio[b] = mensaje[contador];
+                contador = contador + 1; 
+            }
+
+            cout << "El mensaje Decodificado es: " << vacio << endl;
         }
-
 };
 
 int main()
